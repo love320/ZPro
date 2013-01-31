@@ -21,26 +21,26 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_interfacem?useUnicode=true&amp;characterEncoding=utf-8" />
-		<property name="username" value="21j3kw1j0n" />
-		<property name="password" value="jj434l11y3k10l3z401l2w2kl31k53l32zimzwzy" />
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/zpro?useUnicode=true&amp;characterEncoding=utf-8" />
+		<property name="username" value="root" />
+		<property name="password" value="123456" />
 		<property name="removeAbandoned" value="true" />
 		<property name="removeAbandonedTimeout" value="10000" />
 	</bean>
 	
-	 <!--  
+	 <!--      --> 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">  
         <property name="dataSource" ref="dataSource" />  
-        <property name="hibernateProperties">  
-            <value>  
-                hibernate.dialect=org.hibernate.dialect.HSQLDialect  
-                hibernate.show_sql=true  
-            </value>  
-        </property>  
+        <property name="hibernateProperties">
+                        <props>
+                                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+                                <prop key="hibernate.show_sql">true</prop>
+                        </props>
+                </property>  
         <property name="packagesToScan" value="app.entity" />
     </bean>  
-      -->  
-    <!-- 声明式事务 
+   
+    <!-- 声明式事务 -->  
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">  
         <property name="sessionFactory" ref="sessionFactory" />  
     </bean>  
@@ -57,6 +57,6 @@
             <tx:method name="*" propagation="SUPPORTS" read-only="true" />  
         </tx:attributes>  
     </tx:advice>  
-	-->  
+	
 
 </beans>
