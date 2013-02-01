@@ -1,4 +1,4 @@
-package app.entity;
+package com.love320.zpro.entity;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass //JPA 基类的标识
-public class Base {
+public class BaseEntity {
 	
 	private Long id;
 
@@ -19,8 +19,4 @@ public class Base {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-
-	
-	
 }

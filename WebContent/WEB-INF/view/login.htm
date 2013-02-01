@@ -1,27 +1,27 @@
-<#escape x as (x)!> 
-<#assign base=springMacroRequestContext.getContextUrl("")>
+<#escape x as (x)!> <#assign
+base=springMacroRequestContext.getContextUrl("")>
 <!DOCTYPE html>
 <html lang="zh_CN">
 <head>
 <meta charset="utf-8">
-<title>接口管理系统-冰迪网络(出品)</title>
+<title>ZPro 基础架构-冰迪网络(出品)</title>
 <link href="${base}/css/bootstrap.css" rel="stylesheet">
 <link href="${base}/css/bootstrap-responsive.css" rel="stylesheet">
 </head>
-<body >
-<div class="row">
-  <div class="span4">...</div>
-  <div class="span8">...</div>
-</div>
-<form action="${base}/login.do"   method="post">
-				账号：<input type="text"  name="name" value="Love320" placeholder="Love320" >
-				姓名：<input type="text"  name="pwd" value="love320" placeholder="love320" >
-				验证码：<input type="text"  name="code" value="" ><br/>
-				<button class="btn btn-large btn-block btn-primary"  type="submit">保存</button>
-				</form>
+<body>
+	<div class="container">
+		<form action="${base}/login.do" method="post" class="form-inline">
+			<legend>登录</legend>
+			 <input type="text" name="name" value="" placeholder="账号">
+			 <input type="text" name="pwd" value="" placeholder="姓名">
+			 <input type="text" name="code" value="" placeholder="验证码">
+			 <button type="submit" class="btn">登录</button>
+		</form>
+	</div>
 
-<script src="${base}/js/jquery.js"></script>
-<script src="${base}/js/bootstrap.js"></script>
+	<!-- javascript -->
+	<script src="${base}/js/jquery.js"></script>
+	<script src="${base}/js/bootstrap.js"></script>
 </body>
 </html>
 </#escape>

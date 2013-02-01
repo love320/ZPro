@@ -1,10 +1,11 @@
 package app.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
+
+import com.love320.zpro.entity.BaseEntity;
 
 @Entity
-public class User extends Base {
+public class User extends BaseEntity {
 	
 	private String name;
 
