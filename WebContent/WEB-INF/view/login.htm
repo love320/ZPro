@@ -5,41 +5,23 @@
 <head>
 <meta charset="utf-8">
 <title>接口管理系统-冰迪网络(出品)</title>
-<link href="${base}/less/bootstrap.less" rel="stylesheet/less"	type="text/less" />
-<script src="${base}/js/less-1.3.0.min.js"></script>
-<link href="${base}/less/bootstrap-responsive.css" rel="stylesheet"  type="text/css" />
-<link href="${base}/less/docs.css" rel="stylesheet" type="text/css" />
+<link href="${base}/css/bootstrap.css" rel="stylesheet">
+<link href="${base}/css/bootstrap-responsive.css" rel="stylesheet">
 </head>
-<body  data-spy="scroll" data-target=".bs-docs-sidebar">
-<img height="26" src="${base}/imagecode.do" onclick="this.src=this.src" title="单击刷新验证码" id="img_rrand_code">
-<img height="26" src="${base}/imagecodeorder.do" onclick="this.src=this.src" title="单击刷新验证码" id="img_rrand_code">
-<form class="form-horizontal" action="${base}/loginAction.do"   method="post">
+<body >
+<div class="row">
+  <div class="span4">...</div>
+  <div class="span8">...</div>
+</div>
+<form action="${base}/login.do"   method="post">
 				账号：<input type="text"  name="name" value="Love320" placeholder="Love320" >
 				姓名：<input type="text"  name="pwd" value="love320" placeholder="love320" >
 				验证码：<input type="text"  name="code" value="" ><br/>
 				<button class="btn btn-large btn-block btn-primary"  type="submit">保存</button>
 				</form>
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="${base}/js/jquery.js"></script>
-    <script src="${base}/js/bootstrap-transition.js"></script>
-    <script src="${base}/js/bootstrap-alert.js"></script>
-    <script src="${base}/js/bootstrap-modal.js"></script>
-    <script src="${base}/js/bootstrap-dropdown.js"></script>
-    <script src="${base}/js/bootstrap-scrollspy.js"></script>
-    <script src="${base}/js/bootstrap-tab.js"></script>
-    <script src="${base}/js/bootstrap-tooltip.js"></script>
-    <script src="${base}/js/bootstrap-popover.js"></script>
-    <script src="${base}/js/bootstrap-button.js"></script>
-    <script src="${base}/js/bootstrap-collapse.js"></script>
-    <script src="${base}/js/bootstrap-carousel.js"></script>
-    <script src="${base}/js/bootstrap-typeahead.js"></script>
-    <script src="${base}/js/bootstrap-affix.js"></script>
-    <script src="${base}/js/application.js"></script>
-    <script src="${base}/js/google-code-prettify/prettify.js"></script>
-
+<script src="${base}/js/jquery.js"></script>
+<script src="${base}/js/bootstrap.js"></script>
 </body>
 </html>
 </#escape>
