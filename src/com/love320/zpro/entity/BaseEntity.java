@@ -5,7 +5,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-@MappedSuperclass //JPA »ùÀàµÄ±êÊ¶
+@MappedSuperclass //JPA åŸºç±»çš„æ ‡è¯†
 public class BaseEntity {
 	
 	private Long id;

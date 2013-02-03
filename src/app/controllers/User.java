@@ -16,10 +16,10 @@ public class User {
 
 	@RequestMapping("/login")
 	public String login(Model mode,@RequestParam(required=false)String name,@RequestParam(required=false)String pwd){
-		//·ÇµÇÂ¼£¬ÔØÈëµÇÂ¼Ò³Ãæ
+		//éç™»å½•ï¼Œè½½å…¥ç™»å½•é¡µé¢
 		if(name == null || pwd == null || name.length() < 5) return "login";
 		
-		//µÇÂ¼ÑéÖ¤
+		//ç™»å½•éªŒè¯
 		System.out.println(userService);
 		return "login";
 	}
