@@ -14,7 +14,7 @@ public class Filter {
 	
 	/** 条件符 *_*/
 	public enum Operator {
-		EQ, LIKE, GT, LT, GTE, LTE
+		EQ, LIKE, GT, LT, GE, LE
 	}
 	
 	/** 数据类型 *_*/
@@ -28,7 +28,7 @@ public class Filter {
 	private String name; //字段名
 	private String[] names;//字段集
 	private Object value;//数据
-	public Operator operator;//条件符
+	private Operator operator;//条件符
 	
 	/** 构造 *_*/
 	public Filter(String fieldName, Operator operator, Object value) {
@@ -97,7 +97,9 @@ public class Filter {
 	}
 	
 	
-	
+	public boolean isMany(){
+		return names.length > 1 ? true:false;
+	}
 	
 	
 	
