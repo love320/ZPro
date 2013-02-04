@@ -54,8 +54,8 @@
     </bean> 
 	
 	<aop:config>  
-        <aop:pointcut id="productServiceMethods" expression="execution(* app.services..*.*(..))" />  
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="productServiceMethods" />  
+        <aop:pointcut id="allServiceMethod" expression="execution(* app.services..*.*(..))" />  
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="allServiceMethod" />  
     </aop:config>  
       
     <tx:advice id="txAdvice" transaction-manager="transactionManager">  

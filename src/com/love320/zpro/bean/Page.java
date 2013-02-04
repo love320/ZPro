@@ -8,9 +8,9 @@ public class Page<T> {
 	
     /** 基础信息 **/
 	//当前页
-	protected Integer index;
+	protected Integer index = 2;
 	//每页条数 
-	protected Integer pagesize;
+	protected Integer pagesize = 2;
 	//总条数
 	protected Integer count;
 	//总页数
@@ -52,6 +52,9 @@ public class Page<T> {
 	}
 
 	public void setCount(Integer count) {
+		//已总条数计算总页数
+		size = count / pagesize;//整除
+		if( count % pagesize > 0) size++;//加1 
 		this.count = count;
 	}
 

@@ -1,6 +1,7 @@
 package app.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,32 @@ import com.love320.zpro.services.BaseService;
 @Service
 public class UserService extends BaseService<User> {
 	
-	public Page findPage(Page page,List<Filter> filters){
-		return find(page,filters);
+	public Page find(Page page,Map parameterMap){
+		List<Filter> filters = Filter.parse(parameterMap);
+		return super.find(page,filters);
+	}
+	
+	public User get(Long id){
+		return super.get(id);
+	}
+
+	public boolean save(User entity) {
+		entity = super.add(entity);
+		if(entity.getId() != null && entity.getId() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public boolean update(User entity){
+		return super.update(entity);
+	}
+	
+	public boolean delete(Long id){
+		User entity = new User();
+		entity.setId(id);
+		return super.delete(entity);
 	}
 	
 }

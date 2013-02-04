@@ -7,6 +7,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -24,50 +25,65 @@ public abstract class BaseService<T> {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public Session getSession() {
+	protected Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
 	
-	public T add(T obj){
+	protected T add(T obj){
 		Session session = getSession();
 		session.save(obj);
 		return obj;
 	}
 	
-	public boolean update(T obj){
+	protected T get(Long id){
+		Session session = getSession();
+		Class<T> entity = ReflectionUtils.getSuperClassGenricType(getClass());
+		return (T) session.get(entity, id);
+	}
+	
+	protected boolean update(T obj){
 		Session session = getSession();
 		session.update(obj);
 		return true;
 	}
 	
-	public boolean delete(T obj){
+	protected boolean delete(T obj){
 		Session session = getSession();
 		session.delete(obj);
 		return true;
 	}
 	
-	public Page find(Page page,Class entity,List<Filter> filters){
+	protected Page find(Page page,Class entity,List<Filter> filters){
 		Criterion[] criterions = HibernateUtils.buildCriterionByFilter(filters);
 		return find(page,entity,criterions);
 	}
 	
-	public Page find(Page page,List<Filter> filters){
+	protected Page find(Page page,List<Filter> filters){
 		Class<T> entity = ReflectionUtils.getSuperClassGenricType(getClass());
 		Criterion[] criterions = HibernateUtils.buildCriterionByFilter(filters);
 		return find(page,entity,criterions);
 	}
 	
-	public Page find(Page page){
+	protected Page find(Page page){
 		Class<T> entity = ReflectionUtils.getSuperClassGenricType(getClass());
 		return find(page,entity);
 	}
 	
-	public Page find(Page page,Class entity,Criterion... criterions){
+	protected Page find(Page page,Class entity,Criterion... criterions){
 		Criteria criteria = getSession().createCriteria(entity);
 		for (Criterion c : criterions) {
 			criteria.add(c);
 		}
-		page.setList(criteria.list());
+		Long count = (Long)criteria.setProjection(Projections.rowCount()).uniqueResult();//总条数
+		page.setCount(count.intValue());
+		
+	    criteria = getSession().createCriteria(entity);
+		for (Criterion c : criterions) {
+			criteria.add(c);
+		}
+		int start = page.getSize() <= 1 ? 0 : (page.getIndex()-1) * page.getPagesize(); 
+		List list = criteria.setFirstResult(start).setMaxResults(page.getPagesize()).list();
+		page.setList(list);
 		return page;
 	}
 	
