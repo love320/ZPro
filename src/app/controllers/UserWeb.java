@@ -32,10 +32,9 @@ public class UserWeb {
 	}
 	
 	@RequestMapping("/list")
-	public String list(Model model,HttpServletRequest request){
-		Page page = new Page<User>();
+	public String list(Model model,Page<User> page ,HttpServletRequest request){
 		page = userService.find(page,request.getParameterMap());
-		model.addAttribute("list",page.getList());
+		model.addAttribute("page",page);
 		return "user/list";
 	}
 	

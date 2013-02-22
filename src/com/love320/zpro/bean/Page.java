@@ -8,13 +8,13 @@ public class Page<T> {
 	
     /** 基础信息 **/
 	//当前页
-	protected Integer index = 2;
+	protected int index = 1;
 	//每页条数 
-	protected Integer pagesize = 2;
+	protected int pagesize =2;
 	//总条数
-	protected Integer count;
+	protected int count;
 	//总页数
-	protected Integer size;
+	protected int size;
 	//信息列表 
 	protected List<T> list;
 	
@@ -31,38 +31,38 @@ public class Page<T> {
 		this.entity = entity;
 	}
 
-	public Integer getIndex() {
+	public int getIndex() {
 		return index;
 	}
 
-	public void setIndex(Integer index) {
+	public void setIndex(int index) {
 		this.index = index;
 	}
 
-	public Integer getPagesize() {
+	public int getPagesize() {
 		return pagesize;
 	}
 
-	public void setPagesize(Integer pagesize) {
+	public void setPagesize(int pagesize) {
 		this.pagesize = pagesize;
 	}
 
-	public Integer getCount() {
+	public int getCount() {
 		return count;
 	}
 
-	public void setCount(Integer count) {
+	public void setCount(int count) {
 		//已总条数计算总页数
 		size = count / pagesize;//整除
 		if( count % pagesize > 0) size++;//加1 
 		this.count = count;
 	}
 
-	public Integer getSize() {
+	public int getSize() {
 		return size;
 	}
 
-	public void setSize(Integer size) {
+	public void setSize(int size) {
 		this.size = size;
 	}
 

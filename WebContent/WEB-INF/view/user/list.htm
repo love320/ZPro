@@ -20,7 +20,7 @@
 				<td class="inline-block"><i class="icon-wrench"></i>操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="${base}/user/input.do" ><i class="icon-plus"></i>添加</a></td>
 			</tr>
 		</thead>
-			<#list list as xx>
+			<#list page.list as xx>
 			<tr>
 				<td>${xx.id}</td>
 				<td>${xx.name}</td>
@@ -30,17 +30,28 @@
 			</#list>
 		</table>
 		
+		<form class="form-search" method="post"  name="formsearch">
+		 <input type="hidden" name="index" value="${page.index}"  id="formindex"/>
+		  <input type="text" class="input-medium search-query" name="name_OR_email_LIKES" placeholder="姓名 或 Email">
+		  <button type="submit" class="btn">Search</button>
+		</form>
+		
 		<!-- page -->
 		<div class="pagination">
 		  <ul>
 		    <li><a href="#">Prev</a></li>
-		    <li class="active"><a href="#" >1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
+		    <#list 1..page.size as xx>
+		    <li <#if xx == page.index> class="active"</#if>><a href="javascript:void(0);" onclick="GoFormIndex(${xx});">${xx}</a></li>
+			</#list> 
 		    <li><a href="#">Next</a></li>
 		  </ul>
 		</div>
+		<script type="text/javascript" >
+		function GoFormIndex(pi){
+			document.getElementById("formindex").value = pi;
+		    document.formsearch.submit();
+		}
+		</script>
 		
 	</div>
 

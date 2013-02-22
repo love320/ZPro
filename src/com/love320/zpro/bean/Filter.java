@@ -39,8 +39,6 @@ public class Filter {
 	
 	/** 构造并处理 *_*/
 	public Filter(String name,Object value){
-		//判断类型是否满足
-		if(name.split("_").length >= 2){
 			this.name = StringUtils.substringBefore(name, "_"); //字段名
 			String type = StringUtils.substringAfterLast(name, "_");//运算符 or 类型
 			String operatorType = type.substring(0, type.length()-1);//运算符 
@@ -51,7 +49,6 @@ public class Filter {
 			
 			String nameStr = StringUtils.substringBeforeLast(name, "_");//处理 多条件 "或" OR
 			this.names = StringUtils.splitByWholeSeparator(nameStr,"_OR_");//赋值多个字段名
-		}
 	}
 	
 	/** 静态公共方式 *_*/
@@ -59,7 +56,8 @@ public class Filter {
 		List<Filter> listFilter = new ArrayList<Filter>();
 		Set<String> keys = map.keySet();//键值集
 		for(String key : keys){
-			listFilter.add(new Filter(key,map.get(key)));//实例并装载
+			//判断类型是否满足
+			if(key.split("_").length >= 2) listFilter.add(new Filter(key,map.get(key)));//实例并装载
 		}
 		return listFilter;
 	}
@@ -98,7 +96,7 @@ public class Filter {
 	
 	
 	public boolean isMany(){
-		return names.length > 1 ? true:false;
+		return names != null && names.length > 1 ? true:false;
 	}
 	
 	
