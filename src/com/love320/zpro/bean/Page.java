@@ -1,6 +1,8 @@
 package com.love320.zpro.bean;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Page<T> {
 	
@@ -19,9 +21,12 @@ public class Page<T> {
 	protected List<T> list;
 	
 	/** 查询条件信息 **/
-	//sql
+	//查询sql
 	String hql;
 	//查询条件
+	
+	/** 提交的参数 **/
+	protected Map p = new HashMap();
 
 	public T getEntity() {
 		return entity;
@@ -80,6 +85,14 @@ public class Page<T> {
 
 	public void setHql(String hql) {
 		this.hql = hql;
+	}
+
+	public Map getP() {
+		return p;
+	}
+
+	public void setP(Map p) {
+		this.p = p;
 	}
 	
 	

@@ -2,6 +2,7 @@ package com.love320.zpro.services;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -53,9 +54,21 @@ public abstract class BaseService<T> {
 		return true;
 	}
 	
+	protected boolean saveOrUdate(T obj){
+		Session session = getSession();
+		session.saveOrUpdate(obj);
+		return true;
+	}
+	
 	protected Page find(Page page,Class entity,List<Filter> filters){
 		Criterion[] criterions = HibernateUtils.buildCriterionByFilter(filters);
 		return find(page,entity,criterions);
+	}
+	
+	protected Page find(Page page,Map parameterMap){
+		List<Filter> filters = Filter.parse(parameterMap);
+		page.setP(parameterMap);
+		return find(page,filters);
 	}
 	
 	protected Page find(Page page,List<Filter> filters){

@@ -1,6 +1,7 @@
 package app.controllers;
 
 
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,15 +9,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.love320.zpro.bean.Page;
+import com.love320.zpro.utils.WebUtils;
+import com.love320.zpro.web.IWeb;
 
 import app.entity.User;
 import app.services.UserService;
 
 @Controller
 @RequestMapping("/user")
-public class UserWeb {
+public class UserWeb implements IWeb<User> {
 	
 	@Autowired
 	private UserService userService;
@@ -31,13 +33,22 @@ public class UserWeb {
 		return "login";
 	}
 	
+	/* (non-Javadoc)
+	 * @see app.controllers.IWeb#list(org.springframework.ui.Model, com.love320.zpro.bean.Page, javax.servlet.http.HttpServletRequest)
+	 */
+	@Override
 	@RequestMapping("/list")
 	public String list(Model model,Page<User> page ,HttpServletRequest request){
-		page = userService.find(page,request.getParameterMap());
+		Map  parameters = WebUtils.build(request);
+		page = userService.find(page,parameters);
 		model.addAttribute("page",page);
 		return "user/list";
 	}
 	
+	/* (non-Javadoc)
+	 * @see app.controllers.IWeb#input(org.springframework.ui.Model, java.lang.Long)
+	 */
+	@Override
 	@RequestMapping("/input")
 	public String input(Model model,@RequestParam(required=false)Long id){
 		User entity = new User();
@@ -48,6 +59,10 @@ public class UserWeb {
 		return "user/input";
 	}
 	
+	/* (non-Javadoc)
+	 * @see app.controllers.IWeb#save(app.entity.User)
+	 */
+	@Override
 	@RequestMapping("/save")
 	public ModelAndView save(User entity){
 		if(entity.getId() == null){
@@ -59,6 +74,10 @@ public class UserWeb {
 		return new ModelAndView("redirect:/user/list.do"); 
 	}
 	
+	/* (non-Javadoc)
+	 * @see app.controllers.IWeb#delete(java.lang.Long)
+	 */
+	@Override
 	@RequestMapping("/delete")
 	public ModelAndView delete(Long id){
 		boolean st = userService.delete(id);

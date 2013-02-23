@@ -1,0 +1,21 @@
+
+<!-- page分页 -->
+		<div class="pagination">
+		  <ul>
+		    <#if 1 lt page.index >
+		    <li><a a href="javascript:void(0);" onclick="GoFormIndex(${page.index-1});"><</a></li>
+		    </#if>
+		    <#list 1..page.size as xx>
+		    <li <#if xx == page.index> class="active"</#if>><a href="javascript:void(0);" onclick="GoFormIndex(${xx});">${xx}</a></li>
+			</#list> 
+		    <#if  page.size gt page.index >
+		    <li><a a href="javascript:void(0);" onclick="GoFormIndex(${page.index +1 });">></a></li>
+		    </#if>
+		  </ul>
+		</div>
+		<script type="text/javascript" >
+		function GoFormIndex(pi){
+			document.getElementById("formindex").value = pi;
+		    document.formsearch.submit();
+		}
+		</script>

@@ -16,8 +16,7 @@ import com.love320.zpro.services.BaseService;
 public class UserService extends BaseService<User> {
 	
 	public Page find(Page page,Map parameterMap){
-		List<Filter> filters = Filter.parse(parameterMap);
-		return super.find(page,filters);
+		return super.find(page,parameterMap);
 	}
 	
 	public User get(Long id){
