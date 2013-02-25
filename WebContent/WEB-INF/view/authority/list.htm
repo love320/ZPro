@@ -1,6 +1,6 @@
 <#escape x as (x)!>
 <#assign base=springMacroRequestContext.getContextUrl("") />
-<#assign appname= "role" />
+<#assign appname= "authority" />
 <!DOCTYPE html>
 <html lang="zh_CN">
 <head>
@@ -16,7 +16,7 @@
 		<thead>
 			<tr>
 				<td>编号</td>
-				<td>角色名</td>
+				<td>权限名</td>
 				<td class="inline-block"><i class="icon-wrench"></i>操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="${base}/${appname}/input.do" ><i class="icon-plus"></i>添加</a></td>
 			</tr>
 		</thead>
@@ -31,7 +31,7 @@
 		
 		<form class="form-search" method="post"  name="formsearch">
 		 <input type="hidden" name="index" value="${page.index}"  id="formindex"/>
-		  <input type="text" class="input-medium search-query" name="name_LIKES" value="${page.p.name_LIKES}" placeholder="角色名">
+		  <input type="text" class="input-medium search-query" name="name_LIKES" value="${page.p.name_LIKES}" placeholder="权限名">
 		  <button type="submit" class="btn">Search</button>
 		</form>
 		

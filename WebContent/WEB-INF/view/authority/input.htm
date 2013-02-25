@@ -11,10 +11,10 @@ base=springMacroRequestContext.getContextUrl("")>
 <body>
 <div class="container">
 <#include "/common/nav.htm" > 
-		<form class="form-horizontal" action="${base}/role/saveids.do" method="post">
+		<form class="form-horizontal" action="${base}/authority/save.do" method="post">
 		<input type="hidden" name="id" value="${entity.id}" />
 			<div class="control-group">
-				<label class="control-label" for="inputEmail">角色名</label>
+				<label class="control-label" for="inputEmail">权限名</label>
 				<div class="controls">
 					<input type="text" id="inputEmail" name="name" value="${entity.name}" placeholder="...">
 				</div>
@@ -26,9 +26,6 @@ base=springMacroRequestContext.getContextUrl("")>
 				</div>
 			</div>
 			
-		<input type="hidden" name="ids" value="1" />
-		<input type="hidden" name="ids" value="2" />
-		
 		</form>
 </div>
 
