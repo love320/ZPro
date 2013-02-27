@@ -3,9 +3,12 @@ package com.love320.zpro.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.love320.zpro.bean.Filter;
@@ -13,9 +16,7 @@ import com.love320.zpro.bean.Filter.Operator;
 
 public class HibernateUtils {
 	
-	/**
-	 * 按属性条件列表创建Criterion数组,辅助函数.
-	 */
+	/** 按属性条件列表创建Criterion数组 *_*/
 	public static Criterion[] buildCriterionByFilter(final List<Filter> filters) {
 		List<Criterion> criterionList = new ArrayList<Criterion>();
 		for (Filter filter : filters) {
@@ -57,7 +58,22 @@ public class HibernateUtils {
 		case GT:
 			criterion = Restrictions.gt(name, value);
 		}
+		
 		return criterion;
+	}
+	
+	public static boolean criteriaByOrder(Criteria criteria,String orderBy,String order){
+		if(StringUtils.isBlank(orderBy) || StringUtils.isBlank(order)) return false; //判断是否为空
+		//分离对象为数组
+		String[] orderByArray = StringUtils.split(orderBy, ',');
+		String[] orderArray = StringUtils.split(order, ',');
+		if(orderByArray.length != orderArray.length ) return false;//排序参数与条件不一至
+		
+		for(int i = 0 ; i < orderByArray.length;i++){
+			if("asc".equals(orderArray[i])) criteria.addOrder(Order.asc(orderByArray[i]));
+			if("desc".equals(orderArray[i])) criteria.addOrder(Order.desc(orderByArray[i]));
+		}
+		return true;
 	}
 
 }
