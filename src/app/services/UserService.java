@@ -20,7 +20,13 @@ public class UserService extends BaseService<User> {
 	}
 	
 	public User findByName(String name){
-		return null;
+		String hql =" from User where name = ? ";
+		List list = getSession().createQuery(hql).setParameter(0, name).list();
+		if(list != null && list.size() == 1){
+			return (User) list.get(0);
+		}else{
+			return null;
+		}
 	}
 	
 	public User get(Long id){

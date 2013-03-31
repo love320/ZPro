@@ -1,8 +1,12 @@
 package app.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import com.love320.zpro.entity.BaseEntity;
 
@@ -49,8 +53,5 @@ public class User extends BaseEntity {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
-	
-	
 	
 }

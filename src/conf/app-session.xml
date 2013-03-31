@@ -8,7 +8,7 @@
 	">
 	
 	<!-- 应用的配置文件 -->
-	<context:property-placeholder location="classpath:conf/application.properties" ignore-unresolvable="true" /> 
+	<context:property-placeholder location="classpath:conf/app.properties" ignore-unresolvable="true" /> 
 		
 	<context:component-scan base-package="org.springframework.samples.petclinic.web" />
 	<context:component-scan base-package="app" />

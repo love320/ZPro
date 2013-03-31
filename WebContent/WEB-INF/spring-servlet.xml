@@ -4,5 +4,5 @@
 	xsi:schemaLocation="
 http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
-
+<import resource="classpath*:conf/*.xml"/>
 </beans>
