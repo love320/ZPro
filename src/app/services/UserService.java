@@ -19,6 +19,10 @@ public class UserService extends BaseService<User> {
 		return super.find(page,parameterMap);
 	}
 	
+	public User findByName(String name){
+		return null;
+	}
+	
 	public User get(Long id){
 		return super.get(id);
 	}

@@ -1,6 +1,8 @@
 package app.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.love320.zpro.entity.BaseEntity;
 
@@ -11,6 +13,8 @@ public class User extends BaseEntity {
 	private String name;//用户名
 	private String password;//密码
 	private String email;//电子邮件
+	
+	private Role role;
 
 	public String getName() {
 		return name;
@@ -34,6 +38,16 @@ public class User extends BaseEntity {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@ManyToOne
+	@JoinColumn(name="role_id", nullable=true, insertable = true, updatable = true) 
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 	
 	
