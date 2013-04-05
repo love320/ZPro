@@ -34,16 +34,17 @@ public class UserWeb implements IWeb<User> {
 		if(name == null || pwd == null || name.length() < 5) new ModelAndView("login"); 
 		
 		//1. 接受提交的当事人和证书：
-		AuthenticationToken token = new UsernamePasswordToken(name, pwd);
+		UsernamePasswordToken token = new UsernamePasswordToken(name, pwd);
+		token.setRememberMe(true);
 		//2. 获取当前Subject：
 		Subject currentUser = SecurityUtils.getSubject();
 		//3. 登录： 
 		try {
 			currentUser.login(token);
-			System.out.println("Ok login"+token.toString());
+			System.out.println( "Ok login "+token.toString());
 			return new ModelAndView("redirect:/user/list.do"); 
 		} catch (Exception e) {
-			System.out.println("Error login");
+			System.out.println("Error login "+e.getMessage());
 		}
 		
 		return new ModelAndView("login"); 
@@ -63,6 +64,7 @@ public class UserWeb implements IWeb<User> {
 	@Override
 	@RequestMapping("/list")
 	public String list(Model model,Page<User> page ,HttpServletRequest request){
+		System.out.println("Error list ");
 		Map  parameters = WebUtils.build(request);
 		page = userService.find(page,parameters);
 		model.addAttribute("page",page);

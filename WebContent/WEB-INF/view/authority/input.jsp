@@ -1,5 +1,6 @@
-<#escape x as (x)!> <#assign
-base=springMacroRequestContext.getContextUrl("")>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="base" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="zh_CN">
 <head>
@@ -10,7 +11,7 @@ base=springMacroRequestContext.getContextUrl("")>
 </head>
 <body>
 <div class="container">
-<#include "/common/nav.htm" > 
+<jsp:include page="../common/nav.jsp" />
 		<form class="form-horizontal" action="${base}/authority/save.do" method="post">
 		<input type="hidden" name="id" value="${entity.id}" />
 			<div class="control-group">
@@ -34,4 +35,3 @@ base=springMacroRequestContext.getContextUrl("")>
 	<script src="${base}/js/bootstrap.js"></script>
 </body>
 </html>
-</#escape>
