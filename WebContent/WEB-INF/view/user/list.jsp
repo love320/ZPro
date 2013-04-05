@@ -34,7 +34,9 @@
 		</table>
 		
 		<form class="form-search" method="post"  name="formsearch">
-		 <input type="hidden" name="index" value="${page.index}"  id="formindex"/>
+		  <input type="hidden" name="index" value="${page.index}"  id="formindex"/>
+		  <input type="hidden" name="order" value="desc" />
+		  <input type="hidden" name="orderBy" value="id"/>
 		  <input type="text" class="input-medium search-query" name="name_OR_email_LIKES" value="${page.p.name_OR_email_LIKES}" placeholder="姓名 或 Email">
 		  <button type="submit" class="btn">Search</button>
 		</form>

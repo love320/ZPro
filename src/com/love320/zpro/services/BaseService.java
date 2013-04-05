@@ -94,9 +94,12 @@ public abstract class BaseService<T> {
 		for (Criterion c : criterions) {
 			criteria.add(c);
 		}
+		HibernateUtils.criteriaByOrder(criteria, page.getOrderBy(), page.getOrder());//排序规则
+		
 		int start = page.getSize() <= 1 ? 0 : (page.getIndex()-1) * page.getPagesize(); 
 		List list = criteria.setFirstResult(start).setMaxResults(page.getPagesize()).list();
 		page.setList(list);
+		
 		return page;
 	}
 	
