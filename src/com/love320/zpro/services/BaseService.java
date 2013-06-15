@@ -1,6 +1,7 @@
 package com.love320.zpro.services;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -71,17 +72,22 @@ public abstract class BaseService<T> {
 		return  (Long)criteria.setProjection(Projections.rowCount()).uniqueResult();//总条数
 	}
 	
-	protected List find(){
+	/** List * */
+	
+	//获取所有信息列表
+	protected List list(){
 		Class<T> entity = ReflectionUtils.getSuperClassGenricType(getClass());
-		return null;
+		return list(entity,null,null);
 	}
 	
-	protected List find(String orderBy, String order){
+	//指定排序规则并获取所有信息列表
+	protected List list(String orderBy, String order){
 		Class<T> entity = ReflectionUtils.getSuperClassGenricType(getClass());
-		return find(entity,orderBy,order);
+		return list(entity,orderBy,order);
 	}
 	
-	protected List find(Class entity,String orderBy, String order){
+	//指定实体类和排序规则并获取所有信息列表
+	protected List list(Class entity,String orderBy, String order){
 		Criteria criteria = getSession().createCriteria(entity);
 		if(orderBy != null && order != null){
 			HibernateUtils.criteriaByOrder(criteria, orderBy, order);//排序规则
@@ -89,65 +95,79 @@ public abstract class BaseService<T> {
 		return criteria.list();
 	}
 	
-	
-	protected List list(Criteria criteria,int start,int size){
-		return  criteria.setFirstResult(start).setMaxResults(size).list();//设置分页
-	}
-	
+	//获取Criteria的列表
 	protected List list(Criteria criteria){
 		return  criteria.list();
 	}
 	
+	//指定Criteria并获取所有信息起始点
+	protected List list(Criteria criteria,int start,int size){
+		return  criteria.setFirstResult(start).setMaxResults(size).list();//设置分页
+	}
+	
+	//指定where(Map)条件获取所有信息列表
 	protected  List list(Map parameterMap){
 		List<Filter> filters = Filter.parse(parameterMap);
 		return list(filters);
 	}
 	
+	//指定实体和where(Map)条件获取所有信息列表
 	protected  List list(Class entity,Map parameterMap){
 		List<Filter> filters = Filter.parse(parameterMap);
 		return list(entity,filters);
 	}
 	
+	//指定where(Filter)条件获取所有信息列表
 	protected List list(List<Filter> filters){
 		Class<T> entity = ReflectionUtils.getSuperClassGenricType(getClass());
 		return list(entity, filters);
 	}
 	
+	//指定实体和where(Filter)条件获取所有信息列表
 	protected List list(Class entity,List<Filter> filters){
 		return list(entity,null,null, filters);
 	}
 	
+	//指定实体和where(Filter)条件、排序规则获取所有信息列表
 	protected List list(Class entity,String orderBy ,String order,List<Filter> filters){
 		Criterion[] criterions = HibernateUtils.buildCriterionByFilter(filters);
 		return list(entity, orderBy, order, criterions);
 	}
 	
+	//指定实体和where(Criterion)条件、排序规则获取所有信息列表
 	protected List list(Class entity,String orderBy ,String order,Criterion... criterions){
 		Criteria criteria = getSession().createCriteria(entity);
 		for (Criterion c : criterions) {
 			criteria.add(c);
 		}
 		HibernateUtils.criteriaByOrder(criteria, orderBy,order);//排序规则
-		List list = criteria.list();
-		return list;
+		return list(criteria);
 	}
 
-	protected Page find(Class entity,Page page,List<Filter> filters){
-		Criterion[] criterions = HibernateUtils.buildCriterionByFilter(filters);
-		return find(entity,page,criterions);
+	/** List End * */
+	
+	/** Page  **/
+	
+	//指定实体，返回分页数据对象
+	protected Page find(Class entity,Page page){
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		return find(entity,page,criterionList.toArray(new Criterion[criterionList.size()]));
 	}
 	
-	protected Page find(Page page,Class entity,List<Filter> filters){
-		Criterion[] criterions = HibernateUtils.buildCriterionByFilter(filters);
-		return find(page,entity,criterions);
-	}
-	
+	//指定实体和where(Map)条件，返回分页数据对象
 	protected Page find(Class entity,Page page,Map parameterMap){
 		List<Filter> filters = Filter.parse(parameterMap);
 		page.setP(parameterMap);
 		return find(entity,page,filters);
 	}
+		
+	//指定实体和where(Filter)条件，返回分页数据对象
+	protected Page find(Class entity,Page page,List<Filter> filters){
+		Criterion[] criterions = HibernateUtils.buildCriterionByFilter(filters);
+		return find(entity,page,criterions);
+	}
 	
+	//指定实体和where(Criterion)条件，返回分页数据对象
 	protected Page find(Class entity,Page page,Criterion... criterions){
 		Criteria criteria = getSession().createCriteria(entity);
 		Criteria criteriaCount = getSession().createCriteria(entity);
@@ -155,7 +175,7 @@ public abstract class BaseService<T> {
 			criteria.add(c);
 			criteriaCount.add(c);
 		}
-		page.setCount(count(criteria).intValue());//设置总数
+		page.setCount(count(criteriaCount).intValue());//设置总数
 
 		HibernateUtils.criteriaByOrder(criteria, page.getOrderBy(), page.getOrder());//排序规则
 		int start = page.getSize() <= 1 ? 0 : (page.getIndex()-1) * page.getPagesize(); 
@@ -163,44 +183,39 @@ public abstract class BaseService<T> {
 		return page;
 	}
 	
+	//返回默认分页数据对象
+	protected Page find(){
+		Page page = new Page<T>();
+		Class<T> entity = ReflectionUtils.getSuperClassGenricType(getClass());
+		return find(entity,page);
+	}
+	
+	//返回分页数据对象
+	protected Page find(Page page){
+		Class<T> entity = ReflectionUtils.getSuperClassGenricType(getClass());
+		return find(entity,page);
+	}
+	
+	//指定where(Map)条件，返回分页数据对象
 	protected Page find(Page page,Map parameterMap){
 		List<Filter> filters = Filter.parse(parameterMap);
 		page.setP(parameterMap);
 		return find(page,filters);
 	}
 	
+	//指定where(Filter)条件，返回分页数据对象
 	protected Page find(Page page,List<Filter> filters){
 		Class<T> entity = ReflectionUtils.getSuperClassGenricType(getClass());
 		Criterion[] criterions = HibernateUtils.buildCriterionByFilter(filters);
-		return find(page,entity,criterions);
+		return find(entity,page,criterions);
 	}
 	
-	protected Page find(Page page){
+	//指定where(Criterion)条件，返回分页数据对象
+	protected Page find(Page page,Criterion... criterions){
 		Class<T> entity = ReflectionUtils.getSuperClassGenricType(getClass());
-		return find(page,entity);
+		return find(entity,page,criterions);
 	}
 	
-	protected Page find(Page page,Class entity,Criterion... criterions){
-		Criteria criteria = getSession().createCriteria(entity);
-		for (Criterion c : criterions) {
-			criteria.add(c);
-		}
-		Long count = (Long)criteria.setProjection(Projections.rowCount()).uniqueResult();//总条数
-		page.setCount(count.intValue());
-		
-	    criteria = getSession().createCriteria(entity);
-		for (Criterion c : criterions) {
-			criteria.add(c);
-		}
-		HibernateUtils.criteriaByOrder(criteria, page.getOrderBy(), page.getOrder());//排序规则
-		
-		int start = page.getSize() <= 1 ? 0 : (page.getIndex()-1) * page.getPagesize(); 
-		List list = criteria.setFirstResult(start).setMaxResults(page.getPagesize()).list();
-		page.setList(list);
-		
-		return page;
-	}
-	
-	
+	/** Page End **/
 
 }

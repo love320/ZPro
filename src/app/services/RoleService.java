@@ -11,7 +11,7 @@ import com.love320.zpro.services.BaseService;
 public class RoleService extends BaseService<Role> {
 	
 	public List findAll(){
-		return super.find();
+		return super.list();
 	}
 	
 	public Page find(Page page,Map parameterMap){

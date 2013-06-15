@@ -46,7 +46,7 @@ public class RoleWeb implements IWeb<Role> {
 		if(id != null) entity = roleService.get(id);
 		model.addAttribute("entity", entity);
 		model.addAttribute("authoritylist", entity.getAuthorityList());
-		model.addAttribute("allauthoritylist", authorityService.find());
+		model.addAttribute("allauthoritylist", authorityService.list());
 		return "role/input";
 	}
 
