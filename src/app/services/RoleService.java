@@ -1,5 +1,6 @@
 package app.services;
 
+import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Service;
 import app.entity.Role;
@@ -8,6 +9,10 @@ import com.love320.zpro.services.BaseService;
 
 @Service
 public class RoleService extends BaseService<Role> {
+	
+	public List findAll(){
+		return super.find();
+	}
 	
 	public Page find(Page page,Map parameterMap){
 		return super.find(page,parameterMap);

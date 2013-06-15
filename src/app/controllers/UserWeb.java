@@ -8,6 +8,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.jboss.logging.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.love320.zpro.bean.Page;
+import com.love320.zpro.utils.ConvertUtils;
 import com.love320.zpro.utils.WebUtils;
 import com.love320.zpro.web.IWeb;
 
+import app.entity.Authority;
+import app.entity.Role;
 import app.entity.User;
+import app.services.RoleService;
 import app.services.UserService;
 
 @Controller
@@ -27,6 +32,9 @@ public class UserWeb implements IWeb<User> {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
 
 	@RequestMapping("/login")
 	public ModelAndView login(Model mode,@RequestParam(required=false)String name,@RequestParam(required=false)String pwd){
@@ -64,7 +72,6 @@ public class UserWeb implements IWeb<User> {
 	@Override
 	@RequestMapping("/list")
 	public String list(Model model,Page<User> page ,HttpServletRequest request){
-		System.out.println("Error list ");
 		Map  parameters = WebUtils.build(request);
 		page = userService.find(page,parameters);
 		model.addAttribute("page",page);
@@ -78,10 +85,10 @@ public class UserWeb implements IWeb<User> {
 	@RequestMapping("/input")
 	public String input(Model model,@RequestParam(required=false)Long id){
 		User entity = new User();
-		if(id != null ){
-			 entity = userService.get(id);
-		}
+		if(id != null ) entity = userService.get(id);
 		model.addAttribute("entity", entity);
+		model.addAttribute("rolelist",entity.getRoleList());
+		model.addAttribute("allrolelist",roleService.findAll());
 		return "user/input";
 	}
 	
@@ -97,6 +104,13 @@ public class UserWeb implements IWeb<User> {
 			boolean st = userService.update(entity);//更新
 		}
 
+		return new ModelAndView("redirect:/user/list.do"); 
+	}
+	
+	@RequestMapping("/saveids")
+	public ModelAndView saveids(User entity,@RequestParam(required=false)Long[] ids) {
+		ConvertUtils.listByIds("roleList", entity, ids, Role.class);
+		userService.saveOrUdate(entity);
 		return new ModelAndView("redirect:/user/list.do"); 
 	}
 	

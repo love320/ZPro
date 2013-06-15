@@ -23,13 +23,15 @@
 			
 			<div class="control-group">
 				<div class="controls">
+					<c:forEach items="${allauthoritylist}" var="xx">
+						<label class="checkbox"><input type="checkbox" name="ids" value="${xx.id}" 
+						<c:forEach items="${authoritylist}" var="xxx"><c:if test="${xx.id == xxx.id}">checked</c:if></c:forEach>
+						>${xx.name}</label>
+					</c:forEach>
 					<button type="submit" class="btn">提交</button>
 				</div>
 			</div>
 			
-		<input type="hidden" name="ids" value="1" />
-		<input type="hidden" name="ids" value="2" />
-		
 		</form>
 </div>
 

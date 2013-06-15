@@ -57,7 +57,7 @@ public class Filter {
 		Set<String> keys = map.keySet();//键值集
 		for(String key : keys){
 			//判断类型是否满足
-			if(key.split("_").length >= 2) listFilter.add(new Filter(key,map.get(key)));//实例并装载
+			if(key.split("_").length >= 2 && !key.substring(0, 1).equals("_")) listFilter.add(new Filter(key,map.get(key)));//实例并装载	
 		}
 		return listFilter;
 	}

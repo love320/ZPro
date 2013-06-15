@@ -8,6 +8,7 @@ public class ConvertUtils {
 	
 	//给对象注入关联信息 
 	public static void listByIds(String name,final Object srcObjects,final Long[] ids, final Class clazz){
+		if(ids == null ) return;
 		
 		List objList = new ArrayList();
 		

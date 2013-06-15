@@ -12,7 +12,7 @@
 <body>
 <div class="container">
 <jsp:include page="../common/nav.jsp" />
-		<form class="form-horizontal" action="${base}/user/save.do" method="post">
+		<form class="form-horizontal" action="${base}/user/saveids.do" method="post">
 		<input type="hidden" name="id" value="${entity.id}" />
 			<div class="control-group">
 				<label class="control-label" for="inputEmail">账号</label>
@@ -34,12 +34,13 @@
 					<input type="text" id="inputPassword"  name="email" value="${entity.email}"  placeholder="Email">
 				</div>
 			</div>
-			
 			<div class="control-group">
 				<div class="controls">
-					<label class="checkbox"> <input type="checkbox">
-						Remember me
-					</label>
+					<c:forEach items="${allrolelist}" var="xx">
+						<label class="checkbox"><input type="checkbox" name="ids" value="${xx.id}" 
+						<c:forEach items="${rolelist}" var="xxx"><c:if test="${xx.id == xxx.id}">checked</c:if></c:forEach>
+						>${xx.name}</label>
+					</c:forEach>
 					<button type="submit" class="btn">提交</button>
 				</div>
 			</div>

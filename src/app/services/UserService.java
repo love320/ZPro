@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import app.entity.Role;
 import app.entity.User;
 
 import com.love320.zpro.bean.Filter;
@@ -50,6 +51,10 @@ public class UserService extends BaseService<User> {
 		User entity = new User();
 		entity.setId(id);
 		return super.delete(entity);
+	}
+	
+	public boolean saveOrUdate(User entity){
+		return super.saveOrUdate(entity);
 	}
 	
 }

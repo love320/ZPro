@@ -19,7 +19,7 @@ public class Role extends BaseEntity {
 
 	private String name;
 	
-	private List<Authority> authorityList;
+	private List<Authority> authorityList = new ArrayList<Authority>();
 
 	public String getName() {
 		return name;
@@ -31,7 +31,7 @@ public class Role extends BaseEntity {
 
 	@ManyToMany
 	@JoinTable(
-			name = "ACCT_ROLE_AUTHORITY",
+			name = "ROLE_AUTHORITY",
 			joinColumns = { @JoinColumn(name = "ROLE_ID")}, 
 			inverseJoinColumns = { @JoinColumn(name = "AUTHORITY_ID") }
 			)

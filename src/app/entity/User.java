@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.love320.zpro.entity.BaseEntity;
 
@@ -18,7 +21,7 @@ public class User extends BaseEntity {
 	private String password;//密码
 	private String email;//电子邮件
 	
-	private Role role;
+	private List<Role> roleList = new ArrayList<Role>();
 
 	public String getName() {
 		return name;
@@ -44,14 +47,19 @@ public class User extends BaseEntity {
 		this.email = email;
 	}
 
-	@ManyToOne
-	@JoinColumn(name="role_id", nullable=true, insertable = true, updatable = true) 
-	public Role getRole() {
-		return role;
+	@ManyToMany
+	@JoinTable(
+			name = "USER_ROLE",
+			joinColumns = { @JoinColumn(name = "USER_ID")}, 
+			inverseJoinColumns = { @JoinColumn(name = "ROLE_ID") }
+			)
+	@Fetch(FetchMode.SUBSELECT)
+	public List<Role> getRoleList() {
+		return roleList;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRoleList(List<Role> roleList) {
+		this.roleList = roleList;
 	}
-	
+
 }

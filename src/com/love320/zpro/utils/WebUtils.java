@@ -10,4 +10,13 @@ public class WebUtils {
 		return MapUtils.copy(request.getParameterMap());
 	}
 	
+	public static Map buildAuto(HttpServletRequest request){													
+		String method = request.getMethod();											
+		if(method.toUpperCase().equals("GET")){											
+			return MapUtils.copy(request.getParameterMap(),"UTF-8");										
+		}else{											
+			return MapUtils.copy(request.getParameterMap());										
+		}											
+	}	
+	
 }

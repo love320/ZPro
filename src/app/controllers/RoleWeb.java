@@ -17,6 +17,7 @@ import com.love320.zpro.web.IWeb;
 
 import app.entity.Authority;
 import app.entity.Role;
+import app.services.AuthorityService;
 import app.services.RoleService;
 
 @Controller
@@ -25,6 +26,9 @@ public class RoleWeb implements IWeb<Role> {
 	
 	@Autowired
 	private RoleService roleService;
+	
+	@Autowired
+	private AuthorityService authorityService;
 
 	@Override
 	@RequestMapping("/list")
@@ -38,7 +42,11 @@ public class RoleWeb implements IWeb<Role> {
 	@Override
 	@RequestMapping("/input")
 	public String input(Model model, Long id) {
-		if(id != null) model.addAttribute("entity", roleService.get(id));
+		Role entity = new Role();
+		if(id != null) entity = roleService.get(id);
+		model.addAttribute("entity", entity);
+		model.addAttribute("authoritylist", entity.getAuthorityList());
+		model.addAttribute("allauthoritylist", authorityService.find());
 		return "role/input";
 	}
 

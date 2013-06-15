@@ -1,5 +1,6 @@
 package app.services;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -11,6 +12,10 @@ import com.love320.zpro.services.BaseService;
 
 @Service
 public class AuthorityService extends BaseService<Authority> {
+	
+	public List find(){
+		return super.find();
+	}
 	
 	public Page find(Page page,Map parameterMap){
 		return super.find(page,parameterMap);

@@ -20,7 +20,7 @@ public interface IWeb<T> {
 
 	@RequestMapping("/save")
 	public abstract ModelAndView save(T entity);
-
+	
 	@RequestMapping("/delete")
 	public abstract ModelAndView delete(Long id);
 
