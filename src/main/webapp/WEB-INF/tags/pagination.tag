@@ -1,8 +1,7 @@
 <%@tag pageEncoding="UTF-8"%>
 <%@ attribute name="page" type="com.love320.zpro.bean.Page" required="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<div class="pagination">
-		  <ul>
+		  <div><ul class="pagination">
 		    <c:if test="${page.index  != 1}">
 		    <li><a a href="javascript:void(0);" onclick="GoFormIndex(${page.index-1});"><</a></li>
 		    </c:if>
@@ -12,8 +11,7 @@
 		    <c:if test="${page.size  > page.index}">
 		    <li><a a href="javascript:void(0);" onclick="GoFormIndex(${page.index +1 });">></a></li>
 		    </c:if>
-		  </ul> 
-		</div>
+		  </ul></div>
 		<script type="text/javascript" >
 		function GoFormIndex(pi){
 			document.getElementById("formindex").value = pi;
