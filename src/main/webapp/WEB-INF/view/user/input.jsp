@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZPro 基础架构 -冰迪网络(出品)</title>
 <link href="${base}/css/bootstrap.css" rel="stylesheet">
-<link href="${base}/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="${base}/css/bootstrap-theme.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
