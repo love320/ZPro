@@ -69,7 +69,7 @@
 		<servlet-name>spring</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-
+	
 	<session-config>
 		<session-timeout>20</session-timeout>
 	</session-config>

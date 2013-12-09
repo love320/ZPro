@@ -47,7 +47,7 @@ public class User extends BaseEntity {
 		this.email = email;
 	}
 
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(
 			name = "USER_ROLE",
 			joinColumns = { @JoinColumn(name = "USER_ID")}, 

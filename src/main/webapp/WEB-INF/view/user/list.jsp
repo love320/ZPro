@@ -16,6 +16,7 @@
 <body>
 	<div class="container">
 	<c:import  url="../common/nav.jsp" />
+	
 		<table class="table table-hover">
 		<thead>
 			<tr>
@@ -30,7 +31,7 @@
 				<td>${xx.id}</td>
 				<td>${xx.name}</td>
 				<td>${xx.email}</td>
-				<td>&nbsp;<a href="${base}/${appname}/input.do?id=${xx.id}" class="btn">修改</a> <a href="${base}/${appname}/delete.do?id=${xx.id}"  class="btn">删除</a> </td>
+				<td>&nbsp;<a href="${base}/${appname}/input.do?id=${xx.id}" class="btn">修改</a> <a href="javascript:void(0);" class="btn delid" data="${xx.id}">删除</a> </td>
 			</tr>
 			</c:forEach>
 		</table>
@@ -50,6 +51,12 @@
 
 	<!-- javascript -->
 	<script src="${base}/js/jquery.js"></script>
+	<script src="${base}/js/jquery.balert.js"></script>
 	<script src="${base}/js/bootstrap.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$(".delid").balert({url:"${base}/${appname}/delete.do?id=",title:'您确定需要删除该信息？'});
+		});
+	</script>
 </body>
 </html>

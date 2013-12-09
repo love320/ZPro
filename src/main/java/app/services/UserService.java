@@ -1,8 +1,10 @@
 package app.services;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import app.entity.Role;
@@ -33,7 +35,7 @@ public class UserService extends BaseService<User> {
 	public User get(Long id){
 		return super.get(id);
 	}
-
+	
 	public boolean save(User entity) {
 		entity = super.add(entity);
 		if(entity.getId() != null && entity.getId() > 0){
