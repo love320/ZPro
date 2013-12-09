@@ -31,7 +31,7 @@
 				<td>${xx.id}</td>
 				<td>${xx.name}</td>
 				<td>${xx.email}</td>
-				<td>&nbsp;<a href="${base}/${appname}/input.do?id=${xx.id}" class="btn">修改</a> <a href="javascript:void(0);" class="btn delid" data="${xx.id}">删除</a> </td>
+				<td>&nbsp;<a href="${base}/${appname}/input.do?id=${xx.id}" class="btn">修改</a><button type="button" class="btn btn-link delbtn" data="${xx.id}">删除</button></td>
 			</tr>
 			</c:forEach>
 		</table>
@@ -43,7 +43,7 @@
 		  <div class="form-group">
 		    <input type="text" class="form-control" name="name_OR_email_LIKES" value="${page.p.name_OR_email_LIKES}" placeholder="姓名 或 Email">
 		  </div>
-		  <button type="submit" class="btn btn-default">Search</button>
+		  <button type="submit" class="btn btn-default">搜索</button>
 		
 		<tags:pagination page="${page}"/>
 		</form>
@@ -55,7 +55,8 @@
 	<script src="${base}/js/bootstrap.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			$(".delid").balert({url:"${base}/${appname}/delete.do?id=",title:'您确定需要删除该信息？'});
+			$(".usernav").addClass("active");
+			$(".delbtn").balert({url:"${base}/${appname}/delete.do?id=",title:'您确定需要删除该信息？'});
 		});
 	</script>
 </body>

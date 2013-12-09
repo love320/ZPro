@@ -46,7 +46,7 @@
 					</c:forEach>
 				</div>
 			</div>
-			<button type="submit" class="btn col-md-offset-2">提交</button>
+			<button type="submit" class="btn btn-default col-md-offset-2">提交</button>
 		</form>
 </div>
 

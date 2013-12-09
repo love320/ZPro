@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -29,7 +30,7 @@ public class Role extends BaseEntity {
 		this.name = name;
 	}
 
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(
 			name = "ROLE_AUTHORITY",
 			joinColumns = { @JoinColumn(name = "ROLE_ID")}, 

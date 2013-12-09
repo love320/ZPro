@@ -14,24 +14,24 @@
 <jsp:include page="../common/nav.jsp" /> 
 		<form class="form-horizontal" action="${base}/role/saveids.do" method="post">
 		<input type="hidden" name="id" value="${entity.id}" />
-			<div class="control-group">
-				<label class="control-label" for="inputEmail">角色名</label>
-				<div class="controls">
-					<input type="text" id="inputEmail" name="name" value="${entity.name}" placeholder="...">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">角色名</label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control" id="inputEmail" name="name" value="${entity.name}" placeholder="...">
 				</div>
 			</div>
 			
-			<div class="control-group">
-				<div class="controls">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">权限</label>
+				<div class="col-sm-8">
 					<c:forEach items="${allauthoritylist}" var="xx">
 						<label class="checkbox"><input type="checkbox" name="ids" value="${xx.id}" 
 						<c:forEach items="${authoritylist}" var="xxx"><c:if test="${xx.id == xxx.id}">checked</c:if></c:forEach>
 						>${xx.name}</label>
 					</c:forEach>
-					<button type="submit" class="btn">提交</button>
 				</div>
 			</div>
-			
+			<button type="submit" class="btn btn-default col-md-offset-2">提交</button>
 		</form>
 </div>
 
