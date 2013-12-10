@@ -19,6 +19,7 @@
 		      <li class="usernav"><a href="${base}/user/list.do">用户管理</a></li>
 		      <li class="rolenav"><a href="${base}/role/list.do">角色管理</a></li>
 		      <li class="authoritynav"><a href="${base}/authority/list.do">权限管理</a></li>
+		      <li class="upfilenav"><a href="${base}/upfile/list.do">文件上传</a></li>
 		      <li><a href="${base}/user/logout.do">退出</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
