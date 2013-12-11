@@ -20,7 +20,7 @@
 <div class="container">
 	<c:import url="../common/nav.jsp" /> 
 	
-    <input class="btn btn-primary btn-sm" id="fileupload" type="file" name="files[]" data-url="${base}/upfile/upload.do"  multiple>
+    <input class="btn btn-primary btn-sm" id="fileupload" type="file" name="files[]" data-url="${base}/upfile/upload"  multiple>
     <br>
 	
 	<div class="progress">
@@ -63,7 +63,7 @@
 		                		.append($('<td/>').text(file.fileName))
 		                		.append($('<td/>').text(file.fileSize))
 		                		.append($('<td/>').text(file.fileType))
-		                		.append($('<td/>').html("<a href='get.do?i="+index+"'>Click</a>"))
+		                		.append($('<td/>').html("<a href='get/"+index+"'>Click</a>"))
 		                		)//end $("#uploaded-files").append()
 		            }); 
 		        },

@@ -14,7 +14,7 @@
 <body>
 <div class="container">
 <jsp:include page="../common/nav.jsp" />
-		<form class="form-horizontal" action="${base}/authority/save.do" method="post">
+		<form class="form-horizontal" action="${base}/authority/save" method="post">
 		<input type="hidden" name="id" value="${entity.id}" />
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="inputEmail">权限名</label>

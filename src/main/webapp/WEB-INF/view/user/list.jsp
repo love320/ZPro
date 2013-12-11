@@ -23,7 +23,7 @@
 				<td>编号</td>
 				<td>姓名</td>
 				<td>邮箱</td>
-				<td ><span class="glyphicon glyphicon-cog"></span>&nbsp;操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="${base}/${appname}/input.do" ><i class="icon-plus"></i>添加</a></td>
+				<td ><span class="glyphicon glyphicon-cog"></span>&nbsp;操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="${base}/${appname}/add" ><i class="icon-plus"></i>添加</a></td>
 			</tr>
 		</thead>
 			<c:forEach items="${page.list}" var="xx">
@@ -31,7 +31,7 @@
 				<td>${xx.id}</td>
 				<td>${xx.name}</td>
 				<td>${xx.email}</td>
-				<td>&nbsp;<a href="${base}/${appname}/input.do?id=${xx.id}" class="btn">修改</a><button type="button" class="btn btn-link delbtn" data="${xx.id}">删除</button></td>
+				<td>&nbsp;<a href="${base}/${appname}/edit/${xx.id}" class="btn">修改</a><button type="button" class="btn btn-link delbtn" data="${xx.id}">删除</button></td>
 			</tr>
 			</c:forEach>
 		</table>
@@ -55,8 +55,8 @@
 	<script src="${base}/js/bootstrap.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			$(".usernav").addClass("active");
-			$(".delbtn").balert({url:"${base}/${appname}/delete.do?id=",title:'您确定需要删除该信息？'});
+			$(".${appname}nav").addClass("active");
+			$(".delbtn").balert({url:"${base}/${appname}/delete/",title:'您确定需要删除该信息？'});
 		});
 	</script>
 </body>

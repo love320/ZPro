@@ -14,7 +14,7 @@
 <body>
 <div class="container">
 <jsp:include page="../common/nav.jsp" />
-		<form class="form-horizontal" action="${base}/user/saveids.do" method="post">
+		<form class="form-horizontal" action="${base}/user/saveids" method="post">
 		<input type="hidden" name="id" value="${entity.id}" />
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label">账号</label>

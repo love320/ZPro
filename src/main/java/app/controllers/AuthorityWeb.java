@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,10 +30,16 @@ public class AuthorityWeb implements IWeb<Authority> {
 		model.addAttribute("page", page);
 		return "authority/list";
 	}
+	
+	@Override
+	@RequestMapping("/add")
+	public String add(Model model) {
+		return edit(model,null);
+	}
 
 	@Override
-	@RequestMapping("/input")
-	public String input(Model model, Long id) {
+	@RequestMapping("/edit/{id}")
+	public String edit(Model model,@PathVariable Long id) {
 		if(id != null) model.addAttribute("entity", authorityService.get(id));
 		return "authority/input";
 	}
@@ -41,14 +48,14 @@ public class AuthorityWeb implements IWeb<Authority> {
 	@RequestMapping("/save")
 	public ModelAndView save(Authority entity) {
 		authorityService.saveOrUdate(entity);
-		return new ModelAndView("redirect:/authority/list.do"); 
+		return new ModelAndView("redirect:/authority/list"); 
 	}
 
 	@Override
-	@RequestMapping("/delete")
-	public ModelAndView delete(Long id) {
+	@RequestMapping("/delete/{id}")
+	public ModelAndView delete(@PathVariable Long id) {
 		boolean st = authorityService.delete(id);
-		return new ModelAndView("redirect:/authority/list.do"); 
+		return new ModelAndView("redirect:/authority/list"); 
 	}
 
 }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -84,8 +85,8 @@ public class FileController {
 	/**
 	 * 获取文件
 	 */
-	@RequestMapping(value = "/get", method = RequestMethod.GET)
-	public void get(HttpServletResponse response,@RequestParam(required=false) Integer i){
+	@RequestMapping(value = "/get/{i}", method = RequestMethod.GET)
+	public void get(HttpServletResponse response,@PathVariable Integer i){
 		 FileMeta getFile = files.get(i);//List 使用序号获取文件
 		 try {		
 			 	response.setContentType(getFile.getFileType());

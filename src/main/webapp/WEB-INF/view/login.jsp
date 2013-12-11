@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div class="container">
-		<form action="${base}/user/login.do" method="post"  class="form-signin" role="form">
+		<form action="${base}/user/login" method="post"  class="form-signin" role="form">
 			 <h2 class="form-signin-heading">登录 ${msg}</h2>
 			 <input type="text" class="form-control" name="name" value="" placeholder="账号">
 			 <input type="text" class="form-control" name="pwd" value="" placeholder="姓名">

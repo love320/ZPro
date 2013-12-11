@@ -13,6 +13,7 @@ import org.jboss.logging.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -54,7 +55,7 @@ public class UserWeb implements IWeb<User> {
 		try {
 			currentUser.login(token);
 			logger.info( "Ok login "+token.toString());
-			return new ModelAndView("redirect:/user/list.do"); 
+			return new ModelAndView("redirect:/user/list"); 
 		} catch (Exception e) {
 			logger.info("Error login "+e.getMessage());
 		}
@@ -82,14 +83,21 @@ public class UserWeb implements IWeb<User> {
 		return "user/list";
 	}
 	
+	
+	@Override
+	@RequestMapping("/add")
+	public String add(Model model) {
+		return edit(model,null);
+	}
+
 	/* (non-Javadoc)
 	 * @see app.controllers.IWeb#input(org.springframework.ui.Model, java.lang.Long)
 	 */
 	@Override
-	@RequestMapping("/input")
-	public String input(Model model,@RequestParam(required=false)Long id){
+	@RequestMapping("/edit/{id}")
+	public String edit(Model model,@PathVariable Long id){
 		User entity = new User();
-		if(id != null ) entity = userService.get(id);
+		if(id != null && id > 0) entity = userService.get(id);
 		model.addAttribute("entity", entity);
 		model.addAttribute("rolelist",entity.getRoleList());
 		model.addAttribute("allrolelist",roleService.findAll());
@@ -108,24 +116,24 @@ public class UserWeb implements IWeb<User> {
 			boolean st = userService.update(entity);//更新
 		}
 
-		return new ModelAndView("redirect:/user/list.do"); 
+		return new ModelAndView("redirect:/user/list"); 
 	}
 	
 	@RequestMapping("/saveids")
 	public ModelAndView saveids(User entity,@RequestParam(required=false)Long[] ids) {
 		ConvertUtils.listByIds("roleList", entity, ids, Role.class);
 		userService.saveOrUdate(entity);
-		return new ModelAndView("redirect:/user/list.do"); 
+		return new ModelAndView("redirect:/user/list");
 	}
 	
 	/* (non-Javadoc)
 	 * @see app.controllers.IWeb#delete(java.lang.Long)
 	 */
 	@Override
-	@RequestMapping("/delete")
-	public ModelAndView delete(Long id){
+	@RequestMapping({"/delete","/delete/{id}"})
+	public ModelAndView delete(@PathVariable Long id){
 		boolean st = userService.delete(id);
-		return new ModelAndView("redirect:/user/list.do"); 
+		return new ModelAndView("redirect:/user/list"); 
 	}
 	
 }

@@ -9,7 +9,7 @@
 <body>
 	<body>
 	<h2>Hello World!</h2>
-	<h2><a href="./user/login.do">Login</a></h2>
+	<h2><a href="./user/login">Login</a></h2>
 	</body>
 </body>
 </html>

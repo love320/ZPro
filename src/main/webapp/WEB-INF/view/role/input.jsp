@@ -14,7 +14,7 @@
 <body>
 <div class="container">
 <jsp:include page="../common/nav.jsp" /> 
-		<form class="form-horizontal" action="${base}/role/saveids.do" method="post">
+		<form class="form-horizontal" action="${base}/role/saveids" method="post">
 		<input type="hidden" name="id" value="${entity.id}" />
 			<div class="form-group">
 				<label class="col-sm-2 control-label">角色名</label>
