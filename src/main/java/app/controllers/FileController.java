@@ -54,9 +54,6 @@ public class FileController {
 			 //通过request的getFile方法获取MultipartFile类型文件
 			 mpf = request.getFile(itr.next()); 
 			 
-			 //打印文件大小
-			 System.out.println(mpf.getOriginalFilename() +" uploaded! "+files.size());
-
 			 //files文件列表只装载10，大于10个，移除第一个
 			 if(files.size() >= 10) files.pop();
 			 
@@ -68,7 +65,7 @@ public class FileController {
 			 
 			 try {
 				 fileMeta.setBytes(mpf.getBytes());
-				 saeUpFileService.upFile(mpf.getName(), mpf.getBytes());//保存
+				 saeUpFileService.upFile(mpf.getOriginalFilename(), mpf.getBytes());//保存
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -93,8 +90,8 @@ public class FileController {
 		 try {		
 			 	response.setContentType(getFile.getFileType());
 			 	response.setHeader("Content-disposition", "attachment; filename=\""+getFile.getFileName()+"\"");
-		        FileCopyUtils.copy(getFile.getBytes(), response.getOutputStream());//写出
-			 	//FileCopyUtils.copy(saeUpFileService.getFile(getFile.getFileName()), response.getOutputStream());//写出
+		        //FileCopyUtils.copy(getFile.getBytes(), response.getOutputStream());//写出
+			 	FileCopyUtils.copy(saeUpFileService.getFile(getFile.getFileName()), response.getOutputStream());//写出
 		 }catch (IOException e) {
 				e.printStackTrace();
 		 }

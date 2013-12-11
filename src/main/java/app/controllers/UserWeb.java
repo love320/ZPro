@@ -4,6 +4,7 @@ package app.controllers;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -24,6 +25,7 @@ import app.entity.Authority;
 import app.entity.Role;
 import app.entity.User;
 import app.services.RoleService;
+import app.services.SaeUpFileService;
 import app.services.UserService;
 
 @Controller
@@ -35,6 +37,8 @@ public class UserWeb implements IWeb<User> {
 	
 	@Autowired
 	private RoleService roleService;
+	
+	private static Logger logger = Logger.getLogger(UserWeb.class.getName());
 
 	@RequestMapping("/login")
 	public ModelAndView login(Model mode,@RequestParam(required=false)String name,@RequestParam(required=false)String pwd){
@@ -49,10 +53,10 @@ public class UserWeb implements IWeb<User> {
 		//3. 登录： 
 		try {
 			currentUser.login(token);
-			System.out.println( "Ok login "+token.toString());
+			logger.info( "Ok login "+token.toString());
 			return new ModelAndView("redirect:/user/list.do"); 
 		} catch (Exception e) {
-			System.out.println("Error login "+e.getMessage());
+			logger.info("Error login "+e.getMessage());
 		}
 		
 		return new ModelAndView("login"); 
