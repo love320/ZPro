@@ -1,4 +1,4 @@
-package app.controllers;
+package app.web;
 
 
 import java.util.Map;
@@ -17,10 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import com.love320.zpro.bean.Page;
-import com.love320.zpro.utils.ConvertUtils;
-import com.love320.zpro.utils.WebUtils;
-import com.love320.zpro.web.IWeb;
+
+import com.love320.zpro.code.bean.Page;
+import com.love320.zpro.code.utils.ConvertUtils;
 
 import app.entity.Authority;
 import app.entity.Role;
@@ -28,6 +27,7 @@ import app.entity.User;
 import app.services.RoleService;
 import app.services.SaeUpFileService;
 import app.services.UserService;
+import app.utils.WebUtils;
 
 @Controller
 @RequestMapping("/user")

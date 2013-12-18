@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.love320.zpro.entity.BaseEntity;
+import com.love320.zpro.code.entity.BaseEntity;
 
 //用户实体
 @Entity

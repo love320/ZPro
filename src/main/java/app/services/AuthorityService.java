@@ -5,10 +5,11 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.love320.zpro.code.bean.Page;
+import com.love320.zpro.code.services.BaseService;
+
 import app.entity.Authority;
 
-import com.love320.zpro.bean.Page;
-import com.love320.zpro.services.BaseService;
 
 @Service
 public class AuthorityService extends BaseService<Authority> {

@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Service;
 import app.entity.User;
-import com.love320.zpro.bean.Page;
-import com.love320.zpro.services.BaseService;
+import com.love320.zpro.code.bean.Page;
+import com.love320.zpro.code.services.BaseService;
 
 //用户服务类
 @Service

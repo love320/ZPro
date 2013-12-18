@@ -1,4 +1,4 @@
-package app.controllers;
+package app.web;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

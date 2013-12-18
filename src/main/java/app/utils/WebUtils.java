@@ -1,8 +1,10 @@
-package com.love320.zpro.utils;
+package app.utils;
 
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import com.love320.zpro.code.utils.MapUtils;
 
 public class WebUtils {
 

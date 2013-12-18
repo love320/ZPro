@@ -1,4 +1,4 @@
-package app.controllers;
+package app.web;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.love320.zpro.bean.Filter;
+import com.love320.zpro.code.bean.Filter;
 
 //测试
 @Controller

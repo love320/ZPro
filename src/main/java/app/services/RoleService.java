@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import app.entity.Role;
 import app.entity.User;
 
-import com.love320.zpro.bean.Page;
-import com.love320.zpro.services.BaseService;
+import com.love320.zpro.code.bean.Page;
+import com.love320.zpro.code.services.BaseService;
 
 @Service
 public class RoleService extends BaseService<Role> {

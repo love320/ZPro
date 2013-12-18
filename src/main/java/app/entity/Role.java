@@ -13,7 +13,7 @@ import javax.persistence.OrderBy;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.love320.zpro.entity.BaseEntity;
+import com.love320.zpro.code.entity.BaseEntity;
 
 @Entity
 public class Role extends BaseEntity {

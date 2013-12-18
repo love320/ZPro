@@ -1,4 +1,4 @@
-package app.controllers;
+package app.web;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,15 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.love320.zpro.bean.Page;
-import com.love320.zpro.utils.ConvertUtils;
-import com.love320.zpro.utils.WebUtils;
-import com.love320.zpro.web.IWeb;
-
+import com.love320.zpro.code.bean.Page;
+import com.love320.zpro.code.utils.ConvertUtils;
 import app.entity.Authority;
 import app.entity.Role;
 import app.services.AuthorityService;
 import app.services.RoleService;
+import app.utils.WebUtils;
 
 @Controller
 @RequestMapping("/role")

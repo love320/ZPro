@@ -1,4 +1,4 @@
-package app.controllers;
+package app.web;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,10 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import app.entity.Authority;
 import app.services.AuthorityService;
+import app.utils.WebUtils;
 
-import com.love320.zpro.bean.Page;
-import com.love320.zpro.utils.WebUtils;
-import com.love320.zpro.web.IWeb;
+import com.love320.zpro.code.bean.Page;
 
 @Controller
 @RequestMapping("/authority")
