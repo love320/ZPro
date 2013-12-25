@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	
 	<!-- 应用的配置文件 -->
-	<context:property-placeholder location="classpath:conf/app.properties" ignore-unresolvable="true" /> 
+	<context:property-placeholder location="classpath:app.properties" ignore-unresolvable="true" /> 
 		
 	<context:component-scan base-package="app" />
 	<mvc:annotation-driven /><!-- 开启 AnnotationMethodHandlerAdapter初始化7个转换器 -->
