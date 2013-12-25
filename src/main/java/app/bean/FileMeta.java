@@ -1,4 +1,4 @@
-package app.model;
+package app.bean;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
