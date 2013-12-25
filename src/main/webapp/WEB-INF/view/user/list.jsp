@@ -41,7 +41,7 @@
 		  <input type="hidden" name="order" value="desc" />
 		  <input type="hidden" name="orderBy" value="id"/>
 		  <div class="form-group">
-		    <input type="text" class="form-control" name="S_name_OR_email_~" value="${page.p.name_OR_email_LIKES}" placeholder="姓名 或 Email">
+		    <input type="text" class="form-control" name="name_OR_email_LIKES" value="${page.p.name_OR_email_LIKES}" placeholder="姓名 或 Email">
 		  </div>
 		  <button type="submit" class="btn btn-default">搜索</button>
 		
